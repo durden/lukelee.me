@@ -12,15 +12,23 @@ I thought this was a bit odd, but it [turns out](http://stackoverflow.com/a/3013
 
 I realize you can easily replace the usage of both of these functions with [list comprehensions](http://docs.python.org/tutorial/datastructures.html#list-comprehensions).  However, I still prefer this syntax:
 
-<pre>
+
+
+```python
 filter(lambda x: x.attribute == value, my_list)
-</pre>
+```
+
+
 
 over
 
-<pre>
+
+
+```python
 my_list = [i for i in my_list if i.attribute == value]
-</pre>
+```
+
+
 
 This brings up an interesting thought.  The developer of [Pylint](http://www.logilab.org/857/) and [Guido](http://www.python.org/~guido/) obviously think [filter](http://docs.python.org/library/functions.html#filter) and [map](http://docs.python.org/library/functions.html#map) are second-class citizens.  Does this make them mean we shouldn't use them for future development?
 

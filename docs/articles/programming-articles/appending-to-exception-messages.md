@@ -10,13 +10,17 @@ It's pretty common to catch an exception, do some cleanup, then re-raise that ex
 
 It's possible to handle this by doing something like this:
 
-<pre>
+
+
+```python
 try:
     subprocess.Popen(['ls', '-l'])
 except Exception as err:
     log.error('Failed launching "ls" command %s' % (err))
     raise
-</pre>
+```
+
+
 
 This works and allows the caller to see more-detailed information and still get the original exception.  The downside of this approach is the error is printed at a low-level.  What if the caller doesn't deem this exception important enough to report at the *error* log level or even important enough to report at all?  Unfortunately the above solution doesn't allow for this because the caller cannot control how the reporting is handled.
 
@@ -26,7 +30,9 @@ I wasn't too sure about the *best* way to do this.  Fortunately, I found a great
 
 The syntax is a bit ugly in my opinion, but the solution maintains the original stack trace, which is a nice benefit:
 
-<pre>
+
+
+```python
 def bar(arg1):
     try:
        foo()
@@ -34,4 +40,5 @@ def bar(arg1):
         import sys
         raise type(e), type(e)(e.message + 
                                'happens at %s'%arg1), sys.exc_info()[2]
-</pre>
+```
+

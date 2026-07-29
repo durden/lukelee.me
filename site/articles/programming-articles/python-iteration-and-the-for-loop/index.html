@@ -4677,16 +4677,14 @@ sometimes called <a href="http://durden.github.com/dunder_talk/?full#1">dunders<
 <a href="http://www.dabeaz.com/generators/Generators.pdf">generator explanation</a> does a
 great job of explaining how this protocol fuels the implementation of the <code>for</code>
 loop:</p>
-<pre>
-    _iter = iter(obj)               # Get iterator object
-    while 1
-        try:
-            x = _iter.next()       # Get next item
-        except StopIteration:  # No more items
-            break
-        # statements
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>               <span class="c1"># Get iterator object</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">while</span> <span class="mi">1</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="n">x</span> <span class="o">=</span> <span class="n">_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>       <span class="c1"># Get next item</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>  <span class="c1"># No more items</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="k">break</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="c1"># statements</span>
+</span></code></pre></div>
 <p>Make sure to read through the entire
 <a href="http://www.dabeaz.com/generators/Generators.pdf">generator presentation</a>.
 There are all sorts of other nice details you might have forgotten or never

@@ -36,33 +36,37 @@ together by writing decorators as a class. [1]
 
 The following two decorators are equivalent:
 
-<pre>
-    def decoratorfunc(func):
-        def wrapper(*args, **kwargs):
-            print 'Decorator as function'
-            func(*args, **kwargs)
-        return wrapper
 
-    class decoratorclass(object):
-        def __init__(self, func):
-            self.func = func
 
-        def __call__(self, *args, **kwargs):
-            print 'Decorator as class'
-            self.func(*args, **kwargs)
+```python
+def decoratorfunc(func):
+    def wrapper(*args, **kwargs):
+        print 'Decorator as function'
+        func(*args, **kwargs)
+    return wrapper
 
-    @decoratorfunc
-    def foo():
-        print 'foo'
+class decoratorclass(object):
+    def __init__(self, func):
+        self.func = func
 
-    foo()
+    def __call__(self, *args, **kwargs):
+        print 'Decorator as class'
+        self.func(*args, **kwargs)
 
-    @decoratorclass
-    def foo():
-        print 'foo'
+@decoratorfunc
+def foo():
+    print 'foo'
 
-    foo()
-</pre>
+foo()
+
+@decoratorclass
+def foo():
+    print 'foo'
+
+foo()
+```
+
+
 
 Notice that `decoratorclass` is a bit longer in terms of lines of code.
 However, they are logically equivalent when operating with the definition of a

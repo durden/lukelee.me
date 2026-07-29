@@ -4548,15 +4548,13 @@
 
 <h1 id="execution-order-of-nested-generator-expressions">Execution order of nested generator expressions<a class="headerlink" href="#execution-order-of-nested-generator-expressions" title="Permanent link">&para;</a></h1>
 <p>What does this print?</p>
-<pre>
-    units = [1, 2]
-    tens = [10, 20]
-    nums = (a + b for a in units for b in tens)
-    units = [3, 4]
-    tens = [30, 40]
-    print nums.next()
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">tens</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">nums</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">units</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">tens</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">tens</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">print</span> <span class="n">nums</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span></code></pre></div>
 <p>I was surprised by the result because of the subtle way <a href="http://docs.python.org/2/reference/expressions.html#generator-expressions">generator expressions are executed</a>.  The reasoning makes sense, which is to preserve your sanity when there's an error triggered by the generator.</p>
 <p>This is a neat example of something I've always taken for granted.  One could argue writing code like this is a bit obtuse and should be avoided.  However, this is still an interesting detail to be aware of.</p>
 <p>Check out the following articles for quiz-like questions and a discussion of surprising Python 'quirks.'</p>

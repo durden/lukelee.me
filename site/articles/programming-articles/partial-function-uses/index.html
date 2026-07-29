@@ -4646,17 +4646,15 @@ is the best tutorial I've ever read on the subject of
 <a href="https://docs.python.org/2/library/functools.html#functools.partial">partial functions</a>.</p>
 <p>I'm fond of using partials to self-document a line of code instead of using a
 comment, much like the author suggests:</p>
-<pre>
-    def is_grouped_together(text):
-        return re.search("[a-zA-Z]\s\=", text)
-
-    def is_spaced_apart(text):
-        return re.search(“[a-zA-Z]\s\=”, text) 
-
-    def and_so_on(text):
-        return re.search(“pattern_188364625", text)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_grouped_together</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;[a-zA-Z]\s\=&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_spaced_apart</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="err">“</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="n">zA</span><span class="o">-</span><span class="n">Z</span><span class="p">]</span>\<span class="n">s</span>\<span class="o">=</span><span class="err">”</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> 
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">and_so_on</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="err">“</span><span class="n">pattern_188364625</span><span class="s2">&quot;, text)</span>
+</span></code></pre></div>
 <p>Of course, the partial function is not necessary.  The regex could be
 documented with a comment above the regex or by using the
 <a href="https://docs.python.org/2/library/re.html#re.VERBOSE">verbose regex flag</a>.

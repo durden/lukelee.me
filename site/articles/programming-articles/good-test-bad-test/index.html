@@ -4548,26 +4548,22 @@
 
 <h1 id="good-test-bad-test">Good test, bad test<a class="headerlink" href="#good-test-bad-test" title="Permanent link">&para;</a></h1>
 <p><a href="http://late.am/post/2015/04/20/good-test-bad-test.html">Good Test, Bad Test</a> is an insightful article.  The article has opinions that are sure to be polarizing, but the reasoning is spot on.  For example, doing this:</p>
-<pre>
-    self.assertEqual(
-        datetime(2015, 3, 11, 20, 9, 25),
-        parsed_dict["date"],
-    )
-    self.assertEqual("GET", parsed_dict["method"])
-    self.assertEqual("/foo", parsed_dict["path"])
-    self.assertEqual("bar=baz", parsed_dict["query"])
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">parsed_dict</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">parsed_dict</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">])</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s2">&quot;/foo&quot;</span><span class="p">,</span> <span class="n">parsed_dict</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s2">&quot;bar=baz&quot;</span><span class="p">,</span> <span class="n">parsed_dict</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">])</span>
+</span></code></pre></div>
 <p>instead of this:</p>
-<pre>
-    self.assertEqual({
-        "date": datetime(2015, 3, 11, 20, 9, 25),
-        "method": "GET",
-        "path": "/foo",
-        "query": "bar=baz",
-    }, parsed_dict)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">({</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;/foo&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;bar=baz&quot;</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">},</span> <span class="n">parsed_dict</span><span class="p">)</span>
+</span></code></pre></div>
 <p>The former is more code, but the useful error messages pay dividends if this test fails.  You'll thank yourself when you spend a day refactoring and chasing test failures.</p>
 <p>Also, there are quite a few quotes to remember when looking through your test code:</p>
 <ol>

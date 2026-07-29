@@ -24,25 +24,29 @@ really smart.  However, the purpose of this post was really to point out an
 awesome little detail that you might not notice at first when mixing
 [Pandas](http://pandas.pydata.org) and [numpy](http://numpy.scipy.org/) code.
 
-<pre>
-    >>> import pandas
-    >>> import numpy
-    >>> x = numpy.arange(0, 5)
-    >>> s = pandas.Series(x)
-    >>> x
-    array([0, 1, 2, 3, 4])
-    >>> s
-    0    0
-    1    1
-    2    2
-    3    3
-    4    4
-    >>> s[0]
-    0
-    >>> s[0] = 10
-    >>> x
-    array([10,  1,  2,  3,  4])
-</pre>
+
+
+```python
+>>> import pandas
+>>> import numpy
+>>> x = numpy.arange(0, 5)
+>>> s = pandas.Series(x)
+>>> x
+array([0, 1, 2, 3, 4])
+>>> s
+0    0
+1    1
+2    2
+3    3
+4    4
+>>> s[0]
+0
+>>> s[0] = 10
+>>> x
+array([10,  1,  2,  3,  4])
+```
+
+
 
 See what happened there?  [Pandas](http://pandas.pydata.org) is smart enough to
 *not* copy the data.  As I mentioned before, [Pandas](http://pandas.pydata.org)

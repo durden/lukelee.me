@@ -4708,54 +4708,48 @@ array:</p>
 <h2 id="sample-data-setup">Sample data setup<a class="headerlink" href="#sample-data-setup" title="Permanent link">&para;</a></h2>
 <p>I wrote the following small function to generate a sufficient amount of
 'random' data for testing:</p>
-<pre>
-def generate_test_data(column_names, row_count, filename):
-    """
-    Generate file of random test data of size (row_count, len(column_names))
-
-    column_names - List of column name strings to use as header row
-    row_count - Number of rows of data to generate
-    filename - Name of file to write test data to
-    """
-
-    col_count = len(column_names)
-    rand_arr = np.random.rand(row_count, col_count)
-    header_line = ' '.join(column_names)
-    np.savetxt(filename, rand_arr, delimiter=' ', fmt='%1.5f',
-               header=header_line, comments='')
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_test_data</span><span class="p">(</span><span class="n">column_names</span><span class="p">,</span> <span class="n">row_count</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">    Generate file of random test data of size (row_count, len(column_names))</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">    column_names - List of column name strings to use as header row</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">    row_count - Number of rows of data to generate</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="sd">    filename - Name of file to write test data to</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">col_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">column_names</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">rand_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">row_count</span><span class="p">,</span> <span class="n">col_count</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">header_line</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">column_names</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">rand_arr</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.5f</span><span class="s1">&#39;</span><span class="p">,</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>               <span class="n">header</span><span class="o">=</span><span class="n">header_line</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>Hopefully this function is straight-forward so I won't discuss it further.</p>
 <p>For this test I simplify used the above function to create a relatively small
 file:</p>
-<pre>
-    # For testing just create a column for each lower case letter in English
-    # alphabet
-    columns = [char for char in string.lowercase]
-    row_count = 1000
-
-    # Don't need the file open.  In order to time things properly we should
-    # allow each method to open the file, etc. itself.
-    fd, filename = tempfile.mkstemp()
-    os.close(fd)
-
-    generate_test_data(filename, columns, row_count)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># For testing just create a column for each lower case letter in English</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># alphabet</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">]</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">row_count</span> <span class="o">=</span> <span class="mi">1000</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Don&#39;t need the file open.  In order to time things properly we should</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># allow each method to open the file, etc. itself.</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">fd</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">()</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">os</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">generate_test_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">row_count</span><span class="p">)</span>
+</span></code></pre></div>
 <p>This creates a space-separated file of random float data that is about 208 KB,
 comprised of 26 columns and 1000 rows.</p>
 <h2 id="test-results">Test results<a class="headerlink" href="#test-results" title="Permanent link">&para;</a></h2>
 <p>The following snippet is from an <a href="http://ipython.org/">IPython</a> shell utilizing
 the <code>%timeit</code> functionality [2]:</p>
-<pre>
-    >>> import numpy as np
-    >>> import pandas as pd
-    >>> %timeit -n 100 pd.read_csv('test.out', delim_whitespace=True)
-    100 loops, best of 3: 6.66 ms per loop
-    >>> %timeit -n 100 f = open('test.out', 'r');f.readline();np.loadtxt(f, unpack=True)
-    100 loops, best of 3: 28 ms per loop
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;test.out&#39;</span><span class="p">,</span> <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="mi">100</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">6.66</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.out&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">);</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">();</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="mi">100</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">28</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
+</span></code></pre></div>
 <h2 id="pandas-wins">Pandas wins!<a class="headerlink" href="#pandas-wins" title="Permanent link">&para;</a></h2>
 <p>The result is that <a href="http://pandas.pydata.org/">Pandas</a> is <strong>much</strong> faster, but
 why?  The short answer, as developer <a href="http://wesmckinney.com">Wes McKinney</a>

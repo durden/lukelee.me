@@ -4550,15 +4550,11 @@
 <p>I tend to use <a href="http://www.logilab.org/857/">Pylint</a> quite a bit in my development process.  I recently stumbled on <a href="http://pylint-messages.wikidot.com/messages:w0141">Warning 141</a>, which complains about continued usage of the <a href="http://docs.python.org/library/functions.html#filter">filter</a> function.</p>
 <p>I thought this was a bit odd, but it <a href="http://stackoverflow.com/a/3013722/1108031">turns out</a> that <a href="http://www.python.org/~guido/">Guido</a> himself lobbied unsuccessfully to have <a href="http://docs.python.org/library/functions.html#filter">filter</a> and <a href="http://docs.python.org/library/functions.html#map">map</a> removed from <a href="http://docs.python.org/py3k/">Python 3</a>.</p>
 <p>I realize you can easily replace the usage of both of these functions with <a href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions">list comprehensions</a>.  However, I still prefer this syntax:</p>
-<pre>
-filter(lambda x: x.attribute == value, my_list)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">attribute</span> <span class="o">==</span> <span class="n">value</span><span class="p">,</span> <span class="n">my_list</span><span class="p">)</span>
+</span></code></pre></div>
 <p>over</p>
-<pre>
-my_list = [i for i in my_list if i.attribute == value]
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">my_list</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">attribute</span> <span class="o">==</span> <span class="n">value</span><span class="p">]</span>
+</span></code></pre></div>
 <p>This brings up an interesting thought.  The developer of <a href="http://www.logilab.org/857/">Pylint</a> and <a href="http://www.python.org/~guido/">Guido</a> obviously think <a href="http://docs.python.org/library/functions.html#filter">filter</a> and <a href="http://docs.python.org/library/functions.html#map">map</a> are second-class citizens.  Does this make them mean we shouldn't use them for future development?</p>
 <p><a href="http://stackoverflow.com/questions/1247486/python-list-comprehension-vs-map">Not in my book</a>.</p>
 <p>This discussion reminds me of an old <a href="http://python.org">Python</a> saying about '<a href="http://mail.python.org/pipermail/tutor/2003-October/025932.html">consenting adults</a>.'</p>

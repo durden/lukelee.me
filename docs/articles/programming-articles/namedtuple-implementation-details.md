@@ -10,12 +10,16 @@ I use [namedtuple](http://docs.python.org/2/library/collections.html#collections
 
 The most interesting part to me was the discussion of namespaces and using [exec](http://docs.python.org/2/reference/simple_stmts.html#grammar-token-exec_stmt).  I'm not sure if I'd write code like this, but it's an interesting way to determine if something is a valid identifier:
 
-<pre>
-    for name in (typename,) + field_names:
-        try:
-            exec ("%s = True" % name) in {}
-        except (SyntaxError, NameError):
-            raise ValueError('Invalid field name: %r' % name)
-</pre>
+
+
+```python
+for name in (typename,) + field_names:
+    try:
+        exec ("%s = True" % name) in {}
+    except (SyntaxError, NameError):
+        raise ValueError('Invalid field name: %r' % name)
+```
+
+
 
 Interesting, now [go read the article](http://jameso.be/2013/08/06/namedtuple.html) and see if it's something you would write.

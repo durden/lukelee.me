@@ -8,26 +8,34 @@ categories:
 # Good test, bad test
 [Good Test, Bad Test](http://late.am/post/2015/04/20/good-test-bad-test.html) is an insightful article.  The article has opinions that are sure to be polarizing, but the reasoning is spot on.  For example, doing this:
 
-<pre>
-    self.assertEqual(
-        datetime(2015, 3, 11, 20, 9, 25),
-        parsed_dict["date"],
-    )
-    self.assertEqual("GET", parsed_dict["method"])
-    self.assertEqual("/foo", parsed_dict["path"])
-    self.assertEqual("bar=baz", parsed_dict["query"])
-</pre>
+
+
+```python
+self.assertEqual(
+    datetime(2015, 3, 11, 20, 9, 25),
+    parsed_dict["date"],
+)
+self.assertEqual("GET", parsed_dict["method"])
+self.assertEqual("/foo", parsed_dict["path"])
+self.assertEqual("bar=baz", parsed_dict["query"])
+```
+
+
 
 instead of this:
 
-<pre>
-    self.assertEqual({
-        "date": datetime(2015, 3, 11, 20, 9, 25),
-        "method": "GET",
-        "path": "/foo",
-        "query": "bar=baz",
-    }, parsed_dict)
-</pre>
+
+
+```python
+self.assertEqual({
+    "date": datetime(2015, 3, 11, 20, 9, 25),
+    "method": "GET",
+    "path": "/foo",
+    "query": "bar=baz",
+}, parsed_dict)
+```
+
+
 
 The former is more code, but the useful error messages pay dividends if this test fails.  You'll thank yourself when you spend a day refactoring and chasing test failures.
 

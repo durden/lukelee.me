@@ -16,11 +16,14 @@ Go [comment](https://gist.github.com/4504120) on it with your own implementation
 
 I also included some code to check the performance of the functions.  Obviously, they all perform fairly close to each other, but just something interesting to think about in your free time:
 
-<pre>
+
+
+```text
 ----- Function Performance -----
 sanitize_1 1.100186 secs
 sanitize_2 0.661218 secs
 sanitize_3 0.664413 secs
 sanitize_4 0.682067 secs
 sanitize_5 0.983952 secs
-</pre>
+```
+

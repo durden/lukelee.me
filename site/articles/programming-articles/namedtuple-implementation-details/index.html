@@ -4549,14 +4549,12 @@
 <h1 id="namedtuple-implementation-details">Namedtuple implementation details<a class="headerlink" href="#namedtuple-implementation-details" title="Permanent link">&para;</a></h1>
 <p>I use <a href="http://docs.python.org/2/library/collections.html#collections.namedtuple">namedtuple</a> in <a href="http://python.org">Python</a> all the time.  The implementation is really interesting and unique, as this <a href="http://jameso.be/2013/08/06/namedtuple.html">excellent namedtuple post</a> demonstrates.</p>
 <p>The most interesting part to me was the discussion of namespaces and using <a href="http://docs.python.org/2/reference/simple_stmts.html#grammar-token-exec_stmt">exec</a>.  I'm not sure if I'd write code like this, but it's an interesting way to determine if something is a valid identifier:</p>
-<pre>
-    for name in (typename,) + field_names:
-        try:
-            exec ("%s = True" % name) in {}
-        except (SyntaxError, NameError):
-            raise ValueError('Invalid field name: %r' % name)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="n">typename</span><span class="p">,)</span> <span class="o">+</span> <span class="n">field_names</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="n">exec</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> = True&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span> <span class="ow">in</span> <span class="p">{}</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">except</span> <span class="p">(</span><span class="ne">SyntaxError</span><span class="p">,</span> <span class="ne">NameError</span><span class="p">):</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid field name: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+</span></code></pre></div>
 <p>Interesting, now <a href="http://jameso.be/2013/08/06/namedtuple.html">go read the article</a> and see if it's something you would write.</p>
 
 

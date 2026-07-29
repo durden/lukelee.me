@@ -50,15 +50,19 @@ Have you ever wondered how the `for` loop actually worked in
 great job of explaining how this protocol fuels the implementation of the `for`
 loop:
 
-<pre>
-    _iter = iter(obj)               # Get iterator object
-    while 1
-        try:
-            x = _iter.next()       # Get next item
-        except StopIteration:  # No more items
-            break
-        # statements
-</pre>
+
+
+```python
+_iter = iter(obj)               # Get iterator object
+while 1
+    try:
+        x = _iter.next()       # Get next item
+    except StopIteration:  # No more items
+        break
+    # statements
+```
+
+
 
 
 Make sure to read through the entire

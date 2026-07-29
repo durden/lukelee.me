@@ -46,7 +46,9 @@ to to verify that the `self` in your method is actually who you think it is.
 
 The [video](https://www.youtube.com/watch?v=HTLu2DFOdTg) gives a good example:
 
-<pre>
+
+
+```python
 class Circle(object):
     def __init__(self, radius):
         self.radius = radius
@@ -62,13 +64,17 @@ class Circle(object):
 class Tire(Circle):
     def perimeter(self):
         return Circle.perimeter(self) * 1.25
-</pre>
+```
+
+
 
 This code makes it difficult to keep a local copy of our original `perimeter`
 method since it could be overridden by subclasses.  The naive solution to this
 would be to do something like the following:
 
-<pre>
+
+
+```python
 class Circle(object):
     def __init__(self, radius):
         self.radius = radius
@@ -82,7 +88,9 @@ class Circle(object):
         return math.pi * r ** 2.0
 
     _perimeter = perimeter
-</pre>
+```
+
+
 
 Of course, this doesn't really work because subclasses could also override this
 new `_perimeter` attribute.  So, the solution is to use the double underscore

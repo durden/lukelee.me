@@ -21,15 +21,19 @@ The lowest layer of memory profiling involves looking at a single object in
 memory.  You can do this by opening up a shell and doing something like the
 following:
 
-<pre>
-    >>> import sys
-    >>> sys.getsizeof({})
-    136
-    >>> sys.getsizeof([])
-    32
-    >>> sys.getsizeof(set())
-    112
-</pre>
+
+
+```python
+>>> import sys
+>>> sys.getsizeof({})
+136
+>>> sys.getsizeof([])
+32
+>>> sys.getsizeof(set())
+112
+```
+
+
 
 The above snippet illustrates the overhead associated with a
 [list](http://docs.python.org/2/tutorial/introduction.html#lists) object. A
@@ -67,11 +71,15 @@ use the standard [unix](http://en.wikipedia.org/wiki/Unix) tools
 To use [guppy](http://pypi.python.org/pypi/guppy/) you drop something like the
 following in your code:
 
-<pre>
-    from guppy import hpy
-    h = hpy()
-    print h.heap()
-</pre>
+
+
+```python
+from guppy import hpy
+h = hpy()
+print h.heap()
+```
+
+
 
 This will print you a nice table of usage grouped by object type.  Here's an
 example of an [PyQt4](http://www.riverbankcomputing.com/software/pyqt/intro)

@@ -10,15 +10,19 @@ categories:
 Is it possible for two dictionaries to compare equally if all the keys are not
 equal?  Surely not, right?
 
-<pre>
-    import numpy
 
-    y = {'a': numpy.nan, 'c': 'test', 'b': numpy.nan}
-    x = {'a': numpy.nan, 'c': 'test', 'b': numpy.nan}
 
-    print 'x == y', x == y
-    print 'x["a"] == y["a"]', x['a'] == y['a']
-</pre>
+```python
+import numpy
+
+y = {'a': numpy.nan, 'c': 'test', 'b': numpy.nan}
+x = {'a': numpy.nan, 'c': 'test', 'b': numpy.nan}
+
+print 'x == y', x == y
+print 'x["a"] == y["a"]', x['a'] == y['a']
+```
+
+
 
 The first print line prints `True` but the second print line prints `False`.
 
@@ -30,19 +34,27 @@ The key concepts are equality vs. identity, nan equality and dictionary comparis
 
 Equality is usually what you're looking with the `==` operator. The following usage of the `==` operator behaves as expected:
 
-<pre>
-    x = 4000
-    y = 4000
 
-    print x == y
-</pre>
+
+```python
+x = 4000
+y = 4000
+
+print x == y
+```
+
+
 
 Remember everything in Python is an object, even integers. Each object has a memory location that can be determined by using the `id()` function:
 
-<pre>
-    print id(x)
-    print id(y)
-</pre>
+
+
+```python
+print id(x)
+print id(y)
+```
+
+
 
 The numbers printed above aren't important and vary across systems, but the numbers are different.  Therefore, x and y are different objects, but comparison with `==` is successful.
 
@@ -50,19 +62,27 @@ The numbers printed above aren't important and vary across systems, but the numb
 
 The `is` operator compares identity, i.e. that two objects exactly the same object.
 
-<pre>
-    x = 4000
-    y = x
 
-    print id(x)
-    print id(y)
-</pre>
+
+```python
+x = 4000
+y = x
+
+print id(x)
+print id(y)
+```
+
+
 
 Now both the x and y object point to the same memory location meaning their identity is equal. You can verify this with the `is` operator:
 
-<pre>
-    print x is y
-</pre>
+
+
+```python
+print x is y
+```
+
+
 
 ### 3. nan equality
 

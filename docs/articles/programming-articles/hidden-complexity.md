@@ -12,16 +12,24 @@ Here's a
 on the hidden complexity when writing a truly portable and solid CSV parser.
 Makes you think twice before writing your own CSV parser like this:
 
-<pre>
-    for line in file:
-        tokens = line.split(',')
-</pre>
+
+
+```python
+for line in file:
+    tokens = line.split(',')
+```
+
+
 
 Trust the Python standard library and do this instead when parsing CSV files:
 
-<pre>
-    import csv
-</pre>
+
+
+```python
+import csv
+```
+
+
 
 The [csv module](https://docs.python.org/2/library/csv.html) can feel
 over-engineered and complicated at times.  However, parsing CSV is not entirely

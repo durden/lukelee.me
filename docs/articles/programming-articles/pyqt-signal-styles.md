@@ -14,18 +14,26 @@ I prefer to use the new-style simply because it looks cleaner and closer to
 native [Python](http://python.org).  I don't like having to specify types and
 function calls in strings like:
 
-<pre>
+
+
+```python
 self.connect(self.listWidget, SIGNAL("itemClicked(QListWidgetItem *)"), self.itemSelected)
-</pre>
+```
+
+
 
 This syntax seems to expose too much of the native C++ nature of
 [Qt](http://qt.nokia.com/).
 
 I've always used the new syntax:
 
-<pre>
+
+
+```python
 self.listWidget.itemClicked.connect(self.itemSelected)
-</pre>
+```
+
+
 
 This choice served me well until I started experimenting with  
 [Qt Designer and pyuic4](http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/designer.html)
@@ -41,16 +49,24 @@ I don't want to use this old-style syntax in my own code.  So when I recently
 needed to disconnect a signal from auto-generated code I chose to use the
 new-style syntax like the following:
 
-<pre>
+
+
+```python
 self.buttonBox.accepted.disconnect(self.accept)
-</pre>
+```
+
+
 
 This __looks__ correct, but I kept running into this error:
 
-<pre>
+
+
+```python
 self.buttonBox.accepted.disconnect(self.accept)
 TypeError: disconnect() failed between 'accepted' and 'accept'
-</pre>
+```
+
+
 
 What is going on here?  I know the signal is connected by the auto-generated
 code!

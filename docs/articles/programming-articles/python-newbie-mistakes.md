@@ -15,9 +15,13 @@ categories:
 > truth, Python is being executed
 > statement-by-statement. To get a feel of what I mean, go to your favorite shell (you aren’t using the default one, I hope) and type the following:
 
-<pre>
+
+
+```python
 def foo():
-</pre>
+```
+
+
 > Press Enter. As you can see, the shell
 > didn’t offer any output and it’s
 > clearly waiting for you to continue

@@ -4551,16 +4551,12 @@
 <a href="http://tburette.github.io/blog/2014/05/25/so-you-want-to-write-your-own-CSV-code/">nerve-racking and truthful article</a>
 on the hidden complexity when writing a truly portable and solid CSV parser.
 Makes you think twice before writing your own CSV parser like this:</p>
-<pre>
-    for line in file:
-        tokens = line.split(',')
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">tokens</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>Trust the Python standard library and do this instead when parsing CSV files:</p>
-<pre>
-    import csv
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+</span></code></pre></div>
 <p>The <a href="https://docs.python.org/2/library/csv.html">csv module</a> can feel
 over-engineered and complicated at times.  However, parsing CSV is not entirely
 trivial, unless you have the luxury of writing both the CSV writer <em>and</em>

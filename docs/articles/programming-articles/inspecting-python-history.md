@@ -34,19 +34,23 @@ I was quickly side-tracked by the following snippet in the
 [collections module](http://hg.python.org/cpython/file/29627bd5b333/Lib/collections.py#l532):
 
 
-<pre>
-    def subtract(self, iterable=None, **kwds):
-        if iterable is not None:
-            self_get = self.get
-            if isinstance(iterable, Mapping):
-                for elem, count in iterable.items():
-                    self[elem] = self_get(elem, 0) - count
-            else:
-                for elem in iterable:
-                    self[elem] = self_get(elem, 0) - 1
-        if kwds:
-            self.subtract(kwds)
-</pre>
+
+
+```python
+def subtract(self, iterable=None, **kwds):
+    if iterable is not None:
+        self_get = self.get
+        if isinstance(iterable, Mapping):
+            for elem, count in iterable.items():
+                self[elem] = self_get(elem, 0) - count
+        else:
+            for elem in iterable:
+                self[elem] = self_get(elem, 0) - 1
+    if kwds:
+        self.subtract(kwds)
+```
+
+
 
 The most interesting line is `self_get = self.get`.  What is the point of this?
 

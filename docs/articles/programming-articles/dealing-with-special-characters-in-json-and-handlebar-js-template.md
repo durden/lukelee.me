@@ -14,7 +14,9 @@ These helpers are useful for handling small amounts of logic like if and loop st
 
 Take the below snippet of JSON from a call to the [last.fm](http://lastfm.com) API:
 
-<pre>
+
+
+```json
 {
     "recenttracks": {
         "@attr": {
@@ -33,11 +35,14 @@ Take the below snippet of JSON from a call to the [last.fm](http://lastfm.com) A
             }
     ]
 }
+```
 
-</pre>
+
 
 Ideally in the template you would use something like this to render the '#text' information in html:
-<pre>
+
+
+```html
 {{#with recenttracks }}
   <ul> 
     {{#each track}}
@@ -45,7 +50,9 @@ Ideally in the template you would use something like this to render the '#text' 
     {{/each}}
   </ul>
 {{/with}}
-</pre>
+```
+
+
 
 Unfortunately this will not work since '#' is reserved by the templating language itself.
 
@@ -63,14 +70,20 @@ Essentially it allows you to specify a 'function' to pass the template variable 
 For example, here is the simple solution once all these pieces are put together:
 
  - Code to be placed anytime BEFORE calling your template with the special '#' character:
-<pre>
-    Handlebars.registerHelper('text', function(obj) {
+
+
+```javascript
+Handlebars.registerHelper('text', function(obj) {
         return obj['#text'];
     });
-</pre>
+```
+
+
 
  - Template code to use above helper:
-<pre>
+
+
+```html
 {{#with recenttracks }}
   <ul> 
     {{#each track}}
@@ -78,6 +91,8 @@ For example, here is the simple solution once all these pieces are put together:
     {{/each}}
   </ul>
 {{/with}}
-</pre>
+```
+
+
 
 I also posted this [solution](https://github.com/wycats/handlebars.js/issues/229#issuecomment-6826100) on the previously mentioned [Github issue](https://github.com/wycats/handlebars.js/issues/229) so be sure to go there and follow the on-going discussion.

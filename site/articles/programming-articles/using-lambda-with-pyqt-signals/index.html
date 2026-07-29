@@ -4550,23 +4550,22 @@
 <p>I wanted to share another great usage for the <a href="http://docs.python.org/tutorial/controlflow.html#lambda-forms">lambda keyword</a> when working with <a href="http://www.riverbankcomputing.co.uk/software/pyqt/intro">PyQt</a> in addition to <a href="http://eli.thegreenplace.net/2011/04/25/passing-extra-arguments-to-pyqt-slot/">more popular extra arguments use case</a>.</p>
 <p>I used the <a href="http://docs.python.org/tutorial/controlflow.html#lambda-forms">lambda</a> 'trick' to add a custom context menu to a table header in a <a href="http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qtablewidget.html">QTableWidget</a>.</p>
 <p>The following snippet is a brief example of using a  <a href="http://docs.python.org/tutorial/controlflow.html#lambda-forms">lambda</a> 'function' to pass the screen position of a right-click operation alongside the <a href="http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qaction.html#triggered">triggered</a> signal.  This position is then used inside of a <a href="http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qtablewidget.html">QTableWidget</a> to detect which row/column were clicked on.</p>
-<pre>
-    def _addContextMenu(self):
-        header_item.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        header_item.customContextMenuRequested.connect(self.showContextMenu)
-
-    def showContextMenu(self, position):
-        deselect_others = QtGui.QAction("Deselect &others", self)
-        deselect_others.triggered.connect(lambda: self.deselectOthers(position))
-
-        menu = QtGui.QMenu()
-        menu.addAction(deselect_others)
-        menu.exec_(self.sender().mapToGlobal(position))
-
-    def deselectOthers(self, position):
-        print self.indexAt(position).row()
-        print self.indexAt(position).column()
-</pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">_addContextMenu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">header_item</span><span class="o">.</span><span class="n">setContextMenuPolicy</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">CustomContextMenu</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">header_item</span><span class="o">.</span><span class="n">customContextMenuRequested</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">showContextMenu</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">showContextMenu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">deselect_others</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QAction</span><span class="p">(</span><span class="s2">&quot;Deselect &amp;others&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">deselect_others</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">deselectOthers</span><span class="p">(</span><span class="n">position</span><span class="p">))</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">menu</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QMenu</span><span class="p">()</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">deselect_others</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">menu</span><span class="o">.</span><span class="n">exec_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sender</span><span class="p">()</span><span class="o">.</span><span class="n">mapToGlobal</span><span class="p">(</span><span class="n">position</span><span class="p">))</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">def</span><span class="w"> </span><span class="nf">deselectOthers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="nb">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexAt</span><span class="p">(</span><span class="n">position</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">()</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="nb">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexAt</span><span class="p">(</span><span class="n">position</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">()</span>
+</span></code></pre></div>
 
 
 

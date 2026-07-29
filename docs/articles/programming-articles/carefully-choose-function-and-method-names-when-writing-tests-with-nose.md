@@ -17,9 +17,13 @@ Using the built-in unittest style of creating tests is really nice and should be
 The conventions are spelled out in their documentation, but in my experience this is easy to forget.
 
 First off, nose has the concept of a 'testMatch' regular expression which tells you whether or not something is a test.  The default regex (it can be customized) is
-<pre>
+
+
+```python
 ((?:^|[\\b_\\.-])[Tt]est)
-</pre>
+```
+
+
 
 You can pretty much just think of this as **anything that has 'test' or 'Test'**.  This makes sense, all things named like tests are tests.
 

@@ -16,7 +16,9 @@ Another useful thing to look into is the [objectify](http://lxml.de/objectify.ht
 
 I've found that using objectify to deal with sequence types like lists and dictionaries is a bit cumbersome.  However, I haven't fully explored the possibilities.  However, I was able to easily serialize sequence types to xml and back to python objects by using some ideas from objectify.  Namely the idea of storing the python type as an attribute on the xml node when saving it.  This is a great idea and allows you to deserialize the xml into a python object easily.  For example, if the xml denotes a python dict, you can see this and easily traverse the xml converting xml tags to dictionary keys.
 
-<pre>
+
+
+```python
 def _xmlElementToDict(element):
     """Convert given xml element to a dict"""
 
@@ -43,6 +45,8 @@ def _xmlElementToSimpleBuiltInType(element):
         return False
 
     return conv_func(element.text)
-</pre>
+```
+
+
 
 Notice how storing the actual type conversion function, 'int', 'float', etc., allows use to parse it out and convert it directly without having to try a bunch of different types or clutter up the code with a complicate if/else.  Pretty fancy huh?

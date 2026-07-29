@@ -42,15 +42,19 @@ Now we need a list of what attributes to watch.  Then, we can provide a custom
 that watches each attribute 'set' action and alert us when a specific attribute
 changes.
 
-<pre>
-    def __setattr__(self, name, value):
-        if name in ['myvar1', 'myvar2']:
-            import traceback
-            import sys
-            # Print stack (without this __setattr__ call)
-            traceback.print_stack(sys._getframe(1))
-            print '%s -> %s = %s' % (repr(self), name, value)
-</pre>
+
+
+```python
+def __setattr__(self, name, value):
+    if name in ['myvar1', 'myvar2']:
+        import traceback
+        import sys
+        # Print stack (without this __setattr__ call)
+        traceback.print_stack(sys._getframe(1))
+        print '%s -> %s = %s' % (repr(self), name, value)
+```
+
+
 
 The above approach works, but it doesn't give us much flexibility.
 
@@ -91,13 +95,17 @@ class's `__setattr__` with our own.  So, to watch attributes in a class simply
 put `@watch_variables` above your class with a list of attribute names.  For
 example:
 
-<pre>
-    @watch_variables(['foo', 'bar'])
-    class BuggyClass(object):
-        def __init__(self, foo, bar):
-            self.foo = foo
-            self.bar = bar
-</pre>
+
+
+```python
+@watch_variables(['foo', 'bar'])
+class BuggyClass(object):
+    def __init__(self, foo, bar):
+        self.foo = foo
+        self.bar = bar
+```
+
+
 
 ### Good Enough?
 

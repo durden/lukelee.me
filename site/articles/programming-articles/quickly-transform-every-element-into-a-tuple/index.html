@@ -4550,38 +4550,30 @@
 <p>There are times when I need to return a tuple for some reason but would like to use a little one-liner list comprehension to transform each element in the tuple.</p>
 <p>For example, say I have a tuple of red, green, blue for setting a color in a GUI element.  I might have for some reason done some floating point math to arrive at the original rgb value.  However, before returning this I want to ensure that all elements in the color tuple are integers.</p>
 <p>I could do the following:</p>
-<pre>
-rgb = (254.5, 255.0, 5)
-rgb_list = []
-
-for color in rgb:
-    rgb_list.append(int(color))
-
-return tuple(rgb_list)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">rgb</span> <span class="o">=</span> <span class="p">(</span><span class="mf">254.5</span><span class="p">,</span> <span class="mf">255.0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">rgb_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">rgb</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">rgb_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">))</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">rgb_list</span><span class="p">)</span>
+</span></code></pre></div>
 <p>This is very straight-forward code to follow, but takes up a lot of space for something so simple.  How can we do this is a shorter way and still not lose any readability? List comprehensions!</p>
-<pre>
-rgb = (254.5, 255.0, 5)
-tuple([int(color) for color in rgb])
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">rgb</span> <span class="o">=</span> <span class="p">(</span><span class="mf">254.5</span><span class="p">,</span> <span class="mf">255.0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">tuple</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">rgb</span><span class="p">])</span>
+</span></code></pre></div>
 <p>Not too bad!  However, if you really want to get fancy you could use map():</p>
-<pre>
-rgb = (254.5, 255.0, 5)
-tuple(map(int, rgb))
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">rgb</span> <span class="o">=</span> <span class="p">(</span><span class="mf">254.5</span><span class="p">,</span> <span class="mf">255.0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">rgb</span><span class="p">))</span>
+</span></code></pre></div>
 <p>At this small of an example the choice between any of these is really up to your style and what you think is readable.  I don't think performance really enters into the conversation yet, but just for fun how do the list comprehension and map compare performance wise?</p>
-<pre>
- >>> from timeit import timeit
- >>> timeit('tuple([int(color) for color in (254.5, 255.0, 5)])')
-0.7590341567993164
-
- >>> timeit('tuple(map(int, (254.5, 255.0, 5)))')
-0.7299971580505371
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">timeit</span><span class="w"> </span><span class="kn">import</span> <span class="n">timeit</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a> <span class="o">&gt;&gt;&gt;</span> <span class="n">timeit</span><span class="p">(</span><span class="s1">&#39;tuple([int(color) for color in (254.5, 255.0, 5)])&#39;</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="mf">0.7590341567993164</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a> <span class="o">&gt;&gt;&gt;</span> <span class="n">timeit</span><span class="p">(</span><span class="s1">&#39;tuple(map(int, (254.5, 255.0, 5)))&#39;</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="mf">0.7299971580505371</span>
+</span></code></pre></div>
 <p>There is a difference, but it's pretty small.  Again, this doesn't really matter all that much at this scale, but it's something worth keeping in mind.</p>
 
 

@@ -14,16 +14,20 @@ is the best tutorial I've ever read on the subject of
 I'm fond of using partials to self-document a line of code instead of using a
 comment, much like the author suggests:
 
-<pre>
-    def is_grouped_together(text):
-        return re.search("[a-zA-Z]\s\=", text)
 
-    def is_spaced_apart(text):
-        return re.search(“[a-zA-Z]\s\=”, text) 
 
-    def and_so_on(text):
-        return re.search(“pattern_188364625", text)
-</pre>
+```python
+def is_grouped_together(text):
+    return re.search("[a-zA-Z]\s\=", text)
+
+def is_spaced_apart(text):
+    return re.search(“[a-zA-Z]\s\=”, text) 
+
+def and_so_on(text):
+    return re.search(“pattern_188364625", text)
+```
+
+
 
 Of course, the partial function is not necessary.  The regex could be
 documented with a comment above the regex or by using the

@@ -8,7 +8,9 @@ categories:
 # Beware of subtle python list semantics
 Here's a quiz:
 
-<pre>
+
+
+```python
 x = [1]
 y = [2]
 print id(x)
@@ -22,7 +24,9 @@ print id(x)
 
 x = x + y
 print id(x)
-</pre>
+```
+
+
 
 Do += or + create a new object or update the existing one in place?  Seems a bit ambiguous and the answer was somewhat unexpected, at least for me.
 

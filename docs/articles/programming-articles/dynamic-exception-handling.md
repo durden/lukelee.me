@@ -10,7 +10,9 @@ I stumbled onto a [great lesson in Python exceptions](http://blog.codedstructure
 
 The article points out that exception handling in Python is very loose and dynamic.  It's a great read to understand what is possible with the dynamic nature of Exceptions.  For example, have you ever tried passing an Exception as an argument and then using that directly in your `except` statement?
 
-<pre>
+
+
+```python
 >>> def do_something():
 ...    blob
 ...
@@ -25,6 +27,8 @@ The article points out that exception handling in Python is very loose and dynam
 Traceback (most recent call last):
   ...
 NameError: global name 'blob' is not defined
-</pre>
+```
+
+
 
 I don't know that I've ever tried that before, but it could be useful.

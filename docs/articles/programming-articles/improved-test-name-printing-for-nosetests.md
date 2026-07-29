@@ -12,11 +12,15 @@ For example, say I have a bunch of tests in a file located at `tests/test_extern
 
 That is a lot to type.  To make matters worse the default output of a test failure with nose doesn't use this syntax:
 
-<pre>
+
+
+```python
 ======================================================================
 ERROR: testLaunch (tests.test_external_apps.TestLaunchExternalApps)
 ----------------------------------------------------------------------
-</pre>
+```
+
+
 
 So, you can't easily copy and paste the output to re-run the failed test.  Yes, there is an option, `--failed`, for re-running the previously failed tests.  This is great, but often times I might have a bunch of test failures in a single run. Then, I want to run each test individually and fix them one at a time.
 
@@ -24,10 +28,14 @@ So, you can't easily copy and paste the output to re-run the failed test.  Yes, 
 
 It would be much better if the output of a failure at least printed the test information in the syntax needed by the command-line.  Luckily, a plugin exists that does this called [nose_runnable_test_names](https://github.com/coldeasy/nose_runnable_test_names).  You can install it with the standard `pip install nose_runnable_test_names` routine and then use the new command-line argument `--with-runnable-test-names`.  The new output is easy to copy and paste:
 
-<pre>
+
+
+```python
 ======================================================================
 ERROR: tests.test_external_apps:TestLaunchExternalApps.testLaunch
 ----------------------------------------------------------------------
-</pre>
+```
+
+
 
 What a great example of the [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy#Do_One_Thing_and_Do_It_Well).

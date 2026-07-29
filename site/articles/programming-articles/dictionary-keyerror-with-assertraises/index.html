@@ -4548,31 +4548,25 @@
 
 <h1 id="dictionary-keyerror-with-assertraises">Dictionary KeyError with assertRaises<a class="headerlink" href="#dictionary-keyerror-with-assertraises" title="Permanent link">&para;</a></h1>
 <p>Have you ever wanted to write a unit test that verifies a key doesn't exist in a dictionary?  If so, you've probably done it several ways:</p>
-<pre>
-self.assertIn('mykey', mydict.keys())
-
-try:
-    tmp = mydict[mykey]
-except KeyError:
-    pass
-else:
-    self.fail()
-
-self.assertEqual(mydict.get(mykey), None)
-self.assertIsNone(mydict.get(mykey))
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;mykey&#39;</span><span class="p">,</span> <span class="n">mydict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">tmp</span> <span class="o">=</span> <span class="n">mydict</span><span class="p">[</span><span class="n">mykey</span><span class="p">]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">pass</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">fail</span><span class="p">()</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mydict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mykey</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="n">mydict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mykey</span><span class="p">))</span>
+</span></code></pre></div>
 <p>You can probably come up with various other ways using self.assertListEqual(), etc.  However, none of these test the actual statement mydict[mykey], except the long try/except code above.  I know that essentially using dict.get() does the same thing, etc.  I still don't think it's as <strong>good</strong>.</p>
 <p>Fortunately there is a <a href="http://docs.python.org/library/unittest.html#unittest.TestCase.assertRaises">special assert statement</a> in the <a href="http://docs.python.org/library/unittest.html">unittest module</a> just for an occasion like this.  However, it only takes a callable so that rules out something like this:</p>
-<pre>
-self.assertRaises(KeyError, mydict[mykey])
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">mydict</span><span class="p">[</span><span class="n">mykey</span><span class="p">])</span>
+</span></code></pre></div>
 <p><strong>Lambda to the rescue!</strong></p>
-<pre>
-self.assertRaises(KeyError, lambda: mydict[mykey])
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">mydict</span><span class="p">[</span><span class="n">mykey</span><span class="p">])</span>
+</span></code></pre></div>
 <p>Using <a href="http://docs.python.org/tutorial/controlflow.html#lambda-forms">lambda</a> turns our dictionary lookup into a callable which allows us to pass a single statement anywhere a function or a <a href="http://docs.python.org/reference/datamodel.html#object.__call__">callable</a> object is required.</p>
 <p>This is a great testing use-case for this nice little anonymous function.  It allows us to test the statement exactly as it would appear in code with the assertRaises() method.</p>
 

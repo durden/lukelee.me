@@ -4549,32 +4549,25 @@
 <h1 id="smart-python-asserts">Smart Python asserts<a class="headerlink" href="#smart-python-asserts" title="Permanent link">&para;</a></h1>
 <p>The <a href="http://docs.python.org/library/unittest.html">unittest</a> module in Python is fully-featured and included in the standard library.  I would hesitate using anything else when testing my Python projects.  However, I've been doing it wrong.</p>
 <p>There are a ton of useful <a href="http://docs.python.org/library/unittest.html#assert-methods">assert variants</a>.  At first glance it might seem like overkill.  I mean all you really need is assertTrue() right? I guess you could really kick it up a notch and use assertFalse too just for fun.  Well if your like me your unit tests are littered with statements like this:</p>
-<pre>
-self.assertTrue('entityname' in col_names)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="s1">&#39;entityname&#39;</span> <span class="ow">in</span> <span class="n">col_names</span><span class="p">)</span>
+</span></code></pre></div>
 <p>Nothing about either of these is <em>wrong</em> until you see the messages you get for a failing test.</p>
-<pre>
-AssertionError: False is not true
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ne">AssertionError</span><span class="p">:</span> <span class="kc">False</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">true</span>
+</span></code></pre></div>
 <p><strong>False is not True!</strong></p>
 <p>Of course it's not, but this isn't terribly useful.  However, after a little research into the <a href="http://docs.python.org/library/unittest.html#assert-methods">assert variants</a> we can come up with the following:</p>
-<pre>
-self.assertIn('entityname', col_names)
-AssertionError: 'entityname' not found in ['entity_name', 'Time', 'Qo', 'Co', 'Qg', 'Cg']
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;entityname&#39;</span><span class="p">,</span> <span class="n">col_names</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="ne">AssertionError</span><span class="p">:</span> <span class="s1">&#39;entityname&#39;</span> <span class="ow">not</span> <span class="n">found</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;entity_name&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Qo&#39;</span><span class="p">,</span> <span class="s1">&#39;Co&#39;</span><span class="p">,</span> <span class="s1">&#39;Qg&#39;</span><span class="p">,</span> <span class="s1">&#39;Cg&#39;</span><span class="p">]</span>
+</span></code></pre></div>
 <p><strong>Much better</strong>.  We didn't even have to write our own custom error message, which all the assert* methods take as an optional argument.  Of course, writing your own custom message can be really helpful, but all of these built-in asserts are meant to keep you from having to do this.</p>
 <p>The authors of the unittest module thought carefully about providing sensible defaults when designing the assert methods.  So next time you are writing your unit tests think carefully about what assert method you use.  It could save you some time when looking at and writing failure messages.</p>
 <p>Here's another great example of something that should be avoided:</p>
-<pre>
-self.assertTrue(val >= 1979.0)
-AssertionError: False is not true
-
-self.assertGreaterEqual(val, 1979.0)
-AssertionError: 1978.0 not greater than or equal to 1979.0
-</pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="mf">1979.0</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="ne">AssertionError</span><span class="p">:</span> <span class="kc">False</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">true</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertGreaterEqual</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="mf">1979.0</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="ne">AssertionError</span><span class="p">:</span> <span class="mf">1978.0</span> <span class="ow">not</span> <span class="n">greater</span> <span class="n">than</span> <span class="ow">or</span> <span class="n">equal</span> <span class="n">to</span> <span class="mf">1979.0</span>
+</span></code></pre></div>
 
 
 

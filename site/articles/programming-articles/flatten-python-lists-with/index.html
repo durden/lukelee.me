@@ -4548,14 +4548,13 @@
 
 <h1 id="flatten-python-lists-with-itertools-module">Flatten Python lists with itertools module<a class="headerlink" href="#flatten-python-lists-with-itertools-module" title="Permanent link">&para;</a></h1>
 <p>Every now and then you end up with a data structure that looks like this:</p>
-<pre>listOflists = [[1,2,3],[4,5,6]]</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">listOflists</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+</span></code></pre></div>
 <p>Then you would like to 'flatten' this list to essentially loop over it as a single list instead of a list of 2 separate, smaller lists.  Well, check out the <a href="http://docs.python.org/library/itertools.html#module-itertools">itertools module</a> for a good <a href="http://docs.python.org/library/itertools.html#itertools.chain">recipe</a> on how to do this.</p>
-<pre>
-def flatten(listOfLists):
-    "Flatten one level of nesting"
-    return chain.from_iterable(listOfLists)
-</pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">flatten</span><span class="p">(</span><span class="n">listOfLists</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">&quot;Flatten one level of nesting&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">return</span> <span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">listOfLists</span><span class="p">)</span>
+</span></code></pre></div>
 
 
 

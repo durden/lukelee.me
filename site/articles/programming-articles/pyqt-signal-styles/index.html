@@ -4553,17 +4553,13 @@
 <p>I prefer to use the new-style simply because it looks cleaner and closer to
 native <a href="http://python.org">Python</a>.  I don't like having to specify types and
 function calls in strings like:</p>
-<pre>
-self.connect(self.listWidget, SIGNAL("itemClicked(QListWidgetItem *)"), self.itemSelected)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">listWidget</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="s2">&quot;itemClicked(QListWidgetItem *)&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">itemSelected</span><span class="p">)</span>
+</span></code></pre></div>
 <p>This syntax seems to expose too much of the native C++ nature of
 <a href="http://qt.nokia.com/">Qt</a>.</p>
 <p>I've always used the new syntax:</p>
-<pre>
-self.listWidget.itemClicked.connect(self.itemSelected)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">listWidget</span><span class="o">.</span><span class="n">itemClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">itemSelected</span><span class="p">)</span>
+</span></code></pre></div>
 <p>This choice served me well until I started experimenting with<br />
 <a href="http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/designer.html">Qt Designer and pyuic4</a>
 to generate GUI code.  The issue is that pyuic4 generates code with the
@@ -4575,16 +4571,12 @@ automatically hooked up by the auto-generated code?</p>
 <p>I don't want to use this old-style syntax in my own code.  So when I recently
 needed to disconnect a signal from auto-generated code I chose to use the
 new-style syntax like the following:</p>
-<pre>
-self.buttonBox.accepted.disconnect(self.accept)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">buttonBox</span><span class="o">.</span><span class="n">accepted</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">accept</span><span class="p">)</span>
+</span></code></pre></div>
 <p>This <strong>looks</strong> correct, but I kept running into this error:</p>
-<pre>
-self.buttonBox.accepted.disconnect(self.accept)
-TypeError: disconnect() failed between 'accepted' and 'accept'
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">buttonBox</span><span class="o">.</span><span class="n">accepted</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">accept</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="n">disconnect</span><span class="p">()</span> <span class="n">failed</span> <span class="n">between</span> <span class="s1">&#39;accepted&#39;</span> <span class="ow">and</span> <span class="s1">&#39;accept&#39;</span>
+</span></code></pre></div>
 <p>What is going on here?  I know the signal is connected by the auto-generated
 code!</p>
 <p>I found the

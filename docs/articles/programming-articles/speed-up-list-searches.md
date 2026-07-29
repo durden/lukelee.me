@@ -8,14 +8,18 @@ categories:
 # Speed up list searches
 Need a way to speed up searching [Python](http://python.org) [lists](http://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange), give [sets](http://docs.python.org/2/library/sets.html) a try.
 
-<pre>
-    >>> x = set(range(100))
-    >>> y = range(100)
-    >>> %timeit 100 in x
-    10000000 loops, best of 3: 50 ns per loop
-    >>> %timeit 100 in y
-    1000000 loops, best of 3: 1.78 us per loop
-</pre>
+
+
+```python
+>>> x = set(range(100))
+>>> y = range(100)
+>>> %timeit 100 in x
+10000000 loops, best of 3: 50 ns per loop
+>>> %timeit 100 in y
+1000000 loops, best of 3: 1.78 us per loop
+```
+
+
 Why the dramatic speed up?  Remember [sets](http://docs.python.org/2/library/sets.html) are un-ordered and don't allow duplicates.  Thus, they are actually implemented using [dictionaries](http://docs.python.org/2/library/stdtypes.html#mapping-types-dict).
 
 The [set documentation](http://docs.python.org/2/library/sets.html) explains this very well if you need a refresher:

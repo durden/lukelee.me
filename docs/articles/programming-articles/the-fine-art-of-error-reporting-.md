@@ -112,41 +112,49 @@ block and have the same effect as `logging.exception` except in the debug
 
 Below are some examples along with what you would see printed:
 
-<pre>
-    def test():
-        x = []
-        try:               
-            idx = x[0]
-        except Exception as err:
-            log.warning('%s' % (err))
 
-    >>> test()
-    list index out of range
 
-    def test():
-        x = []
-        try:               
-            idx = x[0]
-        except Exception as err:
-            log.warning('%s' % (err))
-            log.debug('bad news', exc_info=True)
-    >>> test()
-    list index out of range
-</pre>
+```python
+def test():
+    x = []
+    try:               
+        idx = x[0]
+    except Exception as err:
+        log.warning('%s' % (err))
+
+>>> test()
+list index out of range
+
+def test():
+    x = []
+    try:               
+        idx = x[0]
+    except Exception as err:
+        log.warning('%s' % (err))
+        log.debug('bad news', exc_info=True)
+>>> test()
+list index out of range
+```
+
+
 
 Now let's see what happens when we run our snippet after
 [setting](http://docs.python.org/2/library/logging.html#logging.Logger.setLevel)
 the log level set to `DEBUG`.
 
-<pre>
-    >>> test()
-    list index out of range
-    bad news
-    Traceback (most recent call last):
-    File "<ipython-input-21-69b02ac65835>", line 4, in test
-        idx = x[0]
-    IndexError: list index out of range
-</pre>
+
+
+```python
+>>> test()
+list index out of range
+bad news
+Traceback (most recent call last):
+File "<ipython-input-21-69b02ac65835>", line 4, in test
+    idx = x[0]
+IndexError: list index out of range
+```
+
+
 
 ## Solution: balance and care
 

@@ -28,9 +28,13 @@ First, I stumbled onto a weird warning when trying to
 [older version](http://docs.python.org/release/2.5.4/) of
 [CPython](http://en.wikipedia.org/wiki/CPython).  The warning looked like this:
 
-<pre>
+
+
+```python
 DeprecationWarning: struct integer overflow masking is deprecated
-</pre>
+```
+
+
 
 I also noticed my zip file was corrupted.  So, what's a curious developer to
 do?  Obviously, researching this error was the only option.  This  research
@@ -52,11 +56,15 @@ Have you ever wondered what the information printed when you run the
 means?  Let's break down the following for a typical Windows machine since it
 has a bit more information.
 
-<pre>
+
+
+```python
 Python 2.5.4 (r254:67916, Dec 23 2008, 15:10:54) [MSC v.1310 32 bit (Intel)] on
 win 32
 ...
-</pre>
+```
+
+
 
 Ok, so I have Python 2.5.4, but does this include the commit in
 [revision 64688](http://hg.python.org/cpython/rev/acfad8640e21/)?  I could try
@@ -125,9 +133,13 @@ My version of Python has a bug in the
 [zipfile module](http://docs.python.org/release/2.5.4/lib/module-zipfile.html),
 which results in this error:
 
-<pre>
+
+
+```python
 DeprecationWarning: struct integer overflow masking is deprecated
-</pre>
+```
+
+
 
 I can tell that this was a [bug](http://bugs.python.org/issue1622) and fixed a
 [long time ago](http://hg.python.org/cpython/rev/acfad8640e21/).

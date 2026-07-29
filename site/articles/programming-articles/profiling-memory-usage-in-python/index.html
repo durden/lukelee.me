@@ -4730,16 +4730,14 @@ This post will explain common tools for doing this.</p>
 <p>The lowest layer of memory profiling involves looking at a single object in
 memory.  You can do this by opening up a shell and doing something like the
 following:</p>
-<pre>
-    >>> import sys
-    >>> sys.getsizeof({})
-    136
-    >>> sys.getsizeof([])
-    32
-    >>> sys.getsizeof(set())
-    112
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">({})</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="mi">136</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">([])</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="mi">32</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="nb">set</span><span class="p">())</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="mi">112</span>
+</span></code></pre></div>
 <p>The above snippet illustrates the overhead associated with a
 <a href="http://docs.python.org/2/tutorial/introduction.html#lists">list</a> object. A
 list is 32 bytes (on a 32-bit machine running Python 2.7.3).  This style of
@@ -4767,12 +4765,10 @@ use the standard <a href="http://en.wikipedia.org/wiki/Unix">unix</a> tools
 <p><br></p>
 <p>To use <a href="http://pypi.python.org/pypi/guppy/">guppy</a> you drop something like the
 following in your code:</p>
-<pre>
-    from guppy import hpy
-    h = hpy()
-    print h.heap()
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">guppy</span><span class="w"> </span><span class="kn">import</span> <span class="n">hpy</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">h</span> <span class="o">=</span> <span class="n">hpy</span><span class="p">()</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">print</span> <span class="n">h</span><span class="o">.</span><span class="n">heap</span><span class="p">()</span>
+</span></code></pre></div>
 <p>This will print you a nice table of usage grouped by object type.  Here's an
 example of an <a href="http://www.riverbankcomputing.com/software/pyqt/intro">PyQt4</a>
 application I've been working on:</p>

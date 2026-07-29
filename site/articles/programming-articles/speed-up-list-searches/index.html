@@ -4548,14 +4548,13 @@
 
 <h1 id="speed-up-list-searches">Speed up list searches<a class="headerlink" href="#speed-up-list-searches" title="Permanent link">&para;</a></h1>
 <p>Need a way to speed up searching <a href="http://python.org">Python</a> <a href="http://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange">lists</a>, give <a href="http://docs.python.org/2/library/sets.html">sets</a> a try.</p>
-<pre>
-    >>> x = set(range(100))
-    >>> y = range(100)
-    >>> %timeit 100 in x
-    10000000 loops, best of 3: 50 ns per loop
-    >>> %timeit 100 in y
-    1000000 loops, best of 3: 1.78 us per loop
-</pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="o">%</span><span class="n">timeit</span> <span class="mi">100</span> <span class="ow">in</span> <span class="n">x</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="mi">10000000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">50</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="o">%</span><span class="n">timeit</span> <span class="mi">100</span> <span class="ow">in</span> <span class="n">y</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="mi">1000000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">1.78</span> <span class="n">us</span> <span class="n">per</span> <span class="n">loop</span>
+</span></code></pre></div>
 <p>Why the dramatic speed up?  Remember <a href="http://docs.python.org/2/library/sets.html">sets</a> are un-ordered and don't allow duplicates.  Thus, they are actually implemented using <a href="http://docs.python.org/2/library/stdtypes.html#mapping-types-dict">dictionaries</a>.</p>
 <p>The <a href="http://docs.python.org/2/library/sets.html">set documentation</a> explains this very well if you need a refresher:</p>
 <blockquote>

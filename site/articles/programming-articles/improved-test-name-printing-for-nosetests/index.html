@@ -4622,21 +4622,17 @@
 <p>I reach for <a href="http://pytest.org/latest/">pytest</a> first when setting up a new project.  However, I still have some old projects using the <a href="http://nose.readthedocs.org/en/latest/">nose framework</a>.  <a href="http://nose.readthedocs.org/en/latest/">Nose</a> is great, but <a href="http://pytest.org/latest/">pytest</a> provides better output and shorter syntax for testing, command-line options, etc.  I don't want to convert my old projects over because <a href="http://nose.readthedocs.org/en/latest/">nose</a> is still useful except for one nagging issue.  The syntax for running a single test from the command-line is frustrating.</p>
 <p>For example, say I have a bunch of tests in a file located at <code>tests/test_external_apps.py</code>, but I only want to run the one called <code>testLaunch</code>.  That test is written with Python's <a href="https://docs.python.org/2/library/unittest.html">unittest framework</a>, and I use nose to run it.  The default syntax requires the full path to the test module and then additional syntax using a colon to denote the class.  So, calling my single test would look like this <code>tests.test_external_apps.TestLaunchExternalApps:testLaunch</code>.</p>
 <p>That is a lot to type.  To make matters worse the default output of a test failure with nose doesn't use this syntax:</p>
-<pre>
-======================================================================
-ERROR: testLaunch (tests.test_external_apps.TestLaunchExternalApps)
-----------------------------------------------------------------------
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">======================================================================</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">ERROR</span><span class="p">:</span> <span class="n">testLaunch</span> <span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">test_external_apps</span><span class="o">.</span><span class="n">TestLaunchExternalApps</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">----------------------------------------------------------------------</span>
+</span></code></pre></div>
 <p>So, you can't easily copy and paste the output to re-run the failed test.  Yes, there is an option, <code>--failed</code>, for re-running the previously failed tests.  This is great, but often times I might have a bunch of test failures in a single run. Then, I want to run each test individually and fix them one at a time.</p>
 <h2 id="plugins-to-the-rescue">Plugins to the rescue<a class="headerlink" href="#plugins-to-the-rescue" title="Permanent link">&para;</a></h2>
 <p>It would be much better if the output of a failure at least printed the test information in the syntax needed by the command-line.  Luckily, a plugin exists that does this called <a href="https://github.com/coldeasy/nose_runnable_test_names">nose_runnable_test_names</a>.  You can install it with the standard <code>pip install nose_runnable_test_names</code> routine and then use the new command-line argument <code>--with-runnable-test-names</code>.  The new output is easy to copy and paste:</p>
-<pre>
-======================================================================
-ERROR: tests.test_external_apps:TestLaunchExternalApps.testLaunch
-----------------------------------------------------------------------
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">======================================================================</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">ERROR</span><span class="p">:</span> <span class="n">tests</span><span class="o">.</span><span class="n">test_external_apps</span><span class="p">:</span><span class="n">TestLaunchExternalApps</span><span class="o">.</span><span class="n">testLaunch</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">----------------------------------------------------------------------</span>
+</span></code></pre></div>
 <p>What a great example of the <a href="https://en.wikipedia.org/wiki/Unix_philosophy#Do_One_Thing_and_Do_It_Well">Unix philosophy</a>.</p>
 
 

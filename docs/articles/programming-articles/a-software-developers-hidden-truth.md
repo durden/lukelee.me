@@ -89,7 +89,9 @@ Assume we have the following function which takes values from a user and will
 normalize the specified range of data into something between 0 and 1, which can
 be used by a new widget later down the road.
 
-<pre>
+
+
+```python
 def normalize_ranges(colname):
     """
     Normalize given data range to values in [0 - 1]
@@ -111,23 +113,33 @@ def normalize_ranges(colname):
     ratio['max'] = (live_max - original_range['datamin']) / colspan
 
     return ratio
-</pre>
+```
+
+
 
 Now, assume we have the following 'columns' that are returned by the
 `get_column_data()` function:
 
-<pre>
+
+
+```python
 age = numpy.array([10.0, 20.0, 30.0, 40.0, 50.0])
 height = numpy.array([60.0, 66.0, 72.0, 63.0, 66.0])
-</pre>
+```
+
+
 
 Let's verify it does indeed turn our given range into something between [0 -
 1]:
 
-<pre>
-    >>> normalize_ranges('age')
-    {'max': 1.0, 'min': 0.0}
-</pre>
+
+
+```python
+>>> normalize_ranges('age')
+{'max': 1.0, 'min': 0.0}
+```
+
+
 
 OK, that's a pretty short test, but it seems to work.  We passed in a range of
 'real' numbers and normalized it to something in the space of [0 - 1].
@@ -163,11 +175,15 @@ along with an optional message if the expression is `False`.
 For example, our above function claimed to always return a value between [0 -
 1].  Unfortunately, more stressing of our assumptions shows this isn't true:
 
-<pre>
-    >>> age = numpy.array([-10.0, 20.0, 30.0, 40.0, 50.0])
-    >>> normalize_ranges('age')
-    {'max': 1.0, 'min': -0.5}
-</pre>
+
+
+```python
+>>> age = numpy.array([-10.0, 20.0, 30.0, 40.0, 50.0])
+>>> normalize_ranges('age')
+{'max': 1.0, 'min': -0.5}
+```
+
+
 
 As you can imagine, this scenario could easily go unnoticed for a long time and
 this return value could be propagated all over the code base. This is precisely
@@ -182,7 +198,9 @@ programmers are fallible.
 Luckily, we can use assert statements to code **against** our future selves now
 that we've accepted that we make mistakes.
 
-<pre>
+
+
+```python
 def normalize_ranges(colname):
     """
     Normalize given data range to values in [0 - 1]
@@ -212,17 +230,23 @@ def normalize_ranges(colname):
             colname, ratio['max'], original_range['datamax'], colspan))
 
     return ratio
-</pre>
+```
+
+
 
 We added a few assert statements that will alert us if we don't return values
 within the expected range. Let's see how these assertions change our small test
 case:
 
-<pre>
-    >>> age = numpy.array([-10.0, 20.0, 30.0, 40.0, 50.0])
-    >>> normalize_ranges('age')
-    AssertionError: "age" min (-0.500000) not in [0-1] given (10.000000) colspan(40.000000)
-</pre>
+
+
+```python
+>>> age = numpy.array([-10.0, 20.0, 30.0, 40.0, 50.0])
+>>> normalize_ranges('age')
+AssertionError: "age" min (-0.500000) not in [0-1] given (10.000000) colspan(40.000000)
+```
+
+
 
 This small change has several benefits:
 
@@ -328,7 +352,9 @@ not all fun and games.  As usual, there are downsides.
     example of overuse and how it's difficult to see what the code is meant to
     do.
 
-<pre>
+
+
+```python
 def normalize_ranges(colname):
     """
     Normalize given data range to values in [0 - 1]
@@ -360,7 +386,9 @@ def normalize_ranges(colname):
     assert 0.0 <= ratio['max'] <= 1.0
 
     return ratio
-</pre>
+```
+
+
 
 <br/>
 
@@ -427,17 +455,21 @@ extra benefits.
     [great exception handling post](http://doughellmann.com/2009/06/python-exception-handling-techniques.html#index-1)
     by [Doug Hellman](http://doughellmann.com):
 
-    <pre>
-    def main():
-        logging.basicConfig(level=logging.WARNING)
-        log = logging.getLogger('example')
-        try:
-            throws()
-            return 0
-        except Exception, err:
-            log.exception('Error from throws():')
-            return 1
-    </pre>
+    
+
+```python
+def main():
+    logging.basicConfig(level=logging.WARNING)
+    log = logging.getLogger('example')
+    try:
+        throws()
+        return 0
+    except Exception, err:
+        log.exception('Error from throws():')
+        return 1
+```
+
+
 
     The call to
     [log.exception](http://docs.python.org/2/library/logging.html#logging.Logger.exception)

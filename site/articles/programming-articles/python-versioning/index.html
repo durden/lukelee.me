@@ -4814,10 +4814,8 @@ did something wrong feel free to drop me a
 <a href="http://docs.python.org/release/2.5.4/lib/module-zipfile.html">zip files</a> in an
 <a href="http://docs.python.org/release/2.5.4/">older version</a> of
 <a href="http://en.wikipedia.org/wiki/CPython">CPython</a>.  The warning looked like this:</p>
-<pre>
-DeprecationWarning: struct integer overflow masking is deprecated
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ne">DeprecationWarning</span><span class="p">:</span> <span class="n">struct</span> <span class="n">integer</span> <span class="n">overflow</span> <span class="n">masking</span> <span class="ow">is</span> <span class="n">deprecated</span>
+</span></code></pre></div>
 <p>I also noticed my zip file was corrupted.  So, what's a curious developer to
 do?  Obviously, researching this error was the only option.  This  research
 lead me to a <a href="http://bugs.python.org/issue1622">bug report</a> for
@@ -4834,12 +4832,10 @@ of the interpreter not have this fix?</p>
 <a href="http://docs.python.org/tutorial/interpreter.html">interpreter</a> <strong>really</strong>
 means?  Let's break down the following for a typical Windows machine since it
 has a bit more information.</p>
-<pre>
-Python 2.5.4 (r254:67916, Dec 23 2008, 15:10:54) [MSC v.1310 32 bit (Intel)] on
-win 32
-...
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Python</span> <span class="mf">2.5.4</span> <span class="p">(</span><span class="n">r254</span><span class="p">:</span><span class="mi">67916</span><span class="p">,</span> <span class="n">Dec</span> <span class="mi">23</span> <span class="mi">2008</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">54</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="mf">.1310</span> <span class="mi">32</span> <span class="n">bit</span> <span class="p">(</span><span class="n">Intel</span><span class="p">)]</span> <span class="n">on</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">win</span> <span class="mi">32</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">...</span>
+</span></code></pre></div>
 <p>Ok, so I have Python 2.5.4, but does this include the commit in
 <a href="http://hg.python.org/cpython/rev/acfad8640e21/">revision 64688</a>?  I could try
 using this 'release' number and dig through a bunch of
@@ -4895,10 +4891,8 @@ have the commit for the bug fix.</p>
 <p>My version of Python has a bug in the
 <a href="http://docs.python.org/release/2.5.4/lib/module-zipfile.html">zipfile module</a>,
 which results in this error:</p>
-<pre>
-DeprecationWarning: struct integer overflow masking is deprecated
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ne">DeprecationWarning</span><span class="p">:</span> <span class="n">struct</span> <span class="n">integer</span> <span class="n">overflow</span> <span class="n">masking</span> <span class="ow">is</span> <span class="n">deprecated</span>
+</span></code></pre></div>
 <p>I can tell that this was a <a href="http://bugs.python.org/issue1622">bug</a> and fixed a
 <a href="http://hg.python.org/cpython/rev/acfad8640e21/">long time ago</a>.
 Unfortunately, my actual

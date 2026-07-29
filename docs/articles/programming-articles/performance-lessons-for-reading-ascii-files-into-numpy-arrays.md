@@ -20,7 +20,9 @@ I recently had to read this type of data for a project I'm working on.  It's wor
 I wrote the following small function to generate a sufficient amount of
 'random' data for testing:
 
-<pre>
+
+
+```python
 def generate_test_data(column_names, row_count, filename):
     """
     Generate file of random test data of size (row_count, len(column_names))
@@ -35,26 +37,32 @@ def generate_test_data(column_names, row_count, filename):
     header_line = ' '.join(column_names)
     np.savetxt(filename, rand_arr, delimiter=' ', fmt='%1.5f',
                header=header_line, comments='')
-</pre>
+```
+
+
 
 Hopefully this function is straight-forward so I won't discuss it further.
 
 For this test I simplify used the above function to create a relatively small
 file:
 
-<pre>
-    # For testing just create a column for each lower case letter in English
-    # alphabet
-    columns = [char for char in string.lowercase]
-    row_count = 1000
 
-    # Don't need the file open.  In order to time things properly we should
-    # allow each method to open the file, etc. itself.
-    fd, filename = tempfile.mkstemp()
-    os.close(fd)
 
-    generate_test_data(filename, columns, row_count)
-</pre>
+```python
+# For testing just create a column for each lower case letter in English
+# alphabet
+columns = [char for char in string.lowercase]
+row_count = 1000
+
+# Don't need the file open.  In order to time things properly we should
+# allow each method to open the file, etc. itself.
+fd, filename = tempfile.mkstemp()
+os.close(fd)
+
+generate_test_data(filename, columns, row_count)
+```
+
+
 
 This creates a space-separated file of random float data that is about 208 KB,
 comprised of 26 columns and 1000 rows.
@@ -64,14 +72,18 @@ comprised of 26 columns and 1000 rows.
 The following snippet is from an [IPython](http://ipython.org/) shell utilizing
 the `%timeit` functionality [2]:
 
-<pre>
-    >>> import numpy as np
-    >>> import pandas as pd
-    >>> %timeit -n 100 pd.read_csv('test.out', delim_whitespace=True)
-    100 loops, best of 3: 6.66 ms per loop
-    >>> %timeit -n 100 f = open('test.out', 'r');f.readline();np.loadtxt(f, unpack=True)
-    100 loops, best of 3: 28 ms per loop
-</pre>
+
+
+```python
+>>> import numpy as np
+>>> import pandas as pd
+>>> %timeit -n 100 pd.read_csv('test.out', delim_whitespace=True)
+100 loops, best of 3: 6.66 ms per loop
+>>> %timeit -n 100 f = open('test.out', 'r');f.readline();np.loadtxt(f, unpack=True)
+100 loops, best of 3: 28 ms per loop
+```
+
+
 
 ## Pandas wins!
 

@@ -4559,10 +4559,8 @@
 <p>Using the built-in unittest style of creating tests is really nice and should be considered.  However, the nose naming conventions apply (by default) regardless of whether you use the unittest module or not.  So, it's useful to know what they are to avoid creating a function/method using these conventions when not intending for it to be involved in your test execution.</p>
 <p>The conventions are spelled out in their documentation, but in my experience this is easy to forget.</p>
 <p>First off, nose has the concept of a 'testMatch' regular expression which tells you whether or not something is a test.  The default regex (it can be customized) is</p>
-<pre>
-((?:^|[\\b_\\.-])[Tt]est)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">((</span><span class="err">?</span><span class="p">:</span><span class="o">^|</span><span class="p">[</span>\\<span class="n">b_</span>\\<span class="o">.-</span><span class="p">])[</span><span class="n">Tt</span><span class="p">]</span><span class="n">est</span><span class="p">)</span>
+</span></code></pre></div>
 <p>You can pretty much just think of this as <strong>anything that has 'test' or 'Test'</strong>.  This makes sense, all things named like tests are tests.</p>
 <p>The gotcha part of this naming convention is in the realm of test fixtures, packages, modules, etc.  See, there are a lot of other concepts nose allows for when writing setup/teardown functionality for your tests at the class, module, and package levels.  For example, the following list of words are considered <strong>special</strong> to nose:</p>
 <ul>

@@ -67,15 +67,19 @@ The differences between lists and sets introduce a few trade-offs:
 
 ### 1. Memory size *
 
-<pre>
-    >>> import sys
-    >>> sys.getsizeof({})
-    136
-    >>> sys.getsizeof([])
-    32
-    >>> sys.getsizeof(set())
-    112
-</pre>
+
+
+```python
+>>> import sys
+>>> sys.getsizeof({})
+136
+>>> sys.getsizeof([])
+32
+>>> sys.getsizeof(set())
+112
+```
+
+
 
 Notice the
 [dict](http://docs.python.org/2/tutorial/datastructures.html#dictionaries) is
@@ -109,24 +113,28 @@ Optimizing algorithms is another
 itself, so let's use narrow the algorithm discussion and just use a single
 example, determining if an entry is in our collection or not.
 
-<pre>
-    >>> import timeit
-    >>> # Timing lookup for a list
-    >>> t = timeit.Timer('100000 in x', 
-                    setup='x = [ii for ii in xrange(100000)]')
-    >>> sum(t.repeat(3, 1)) / 3.0
-    0.0018588701883951824
-    >>> # Timeing lookup for a set
-    >>> t = timeit.Timer('100000 in x', 
-                         setup='x = {ii for ii in xrange(100000)}')
-    >>> sum(t.repeat(3, 1)) / 3.0
-    3.337860107421875e-06
-    >>> # Timing lookup for a dict
-    >>> t = timeit.Timer('100000 in x', 
-                         setup='x = {ii:ii for ii in xrange(100000)}')
-    >>> sum(t.repeat(3, 1)) / 3.0
-    2.384185791015625e-06
-</pre>
+
+
+```python
+>>> import timeit
+>>> # Timing lookup for a list
+>>> t = timeit.Timer('100000 in x', 
+                setup='x = [ii for ii in xrange(100000)]')
+>>> sum(t.repeat(3, 1)) / 3.0
+0.0018588701883951824
+>>> # Timeing lookup for a set
+>>> t = timeit.Timer('100000 in x', 
+                     setup='x = {ii for ii in xrange(100000)}')
+>>> sum(t.repeat(3, 1)) / 3.0
+3.337860107421875e-06
+>>> # Timing lookup for a dict
+>>> t = timeit.Timer('100000 in x', 
+                     setup='x = {ii:ii for ii in xrange(100000)}')
+>>> sum(t.repeat(3, 1)) / 3.0
+2.384185791015625e-06
+```
+
+
 
 Notice how much slower the list lookup is.  So, a
 [list](http://docs.python.org/2/tutorial/datastructures.html#more-on-lists) is
@@ -145,17 +153,21 @@ fastest.  Remember the
 This principle applies directly here.  What kind of space/memory trade-off would
 we be making to get this increased lookup speed?
 
-<pre>
-    >>> x = [ii for ii in xrange(100000)]
-    >>> sys.getsizeof(x) / 1024
-    402
-    >>> x = {ii for ii in xrange(100000)}
-    >>> sys.getsizeof(x) / 1024
-    2048
-    >>> x = {ii:ii for ii in xrange(100000)}
-    >>> sys.getsizeof(x) / 1024
-    3072
-</pre>
+
+
+```python
+>>> x = [ii for ii in xrange(100000)]
+>>> sys.getsizeof(x) / 1024
+402
+>>> x = {ii for ii in xrange(100000)}
+>>> sys.getsizeof(x) / 1024
+2048
+>>> x = {ii:ii for ii in xrange(100000)}
+>>> sys.getsizeof(x) / 1024
+3072
+```
+
+
 
 As you can see, we gave up a relatively large amount of memory to get the
 improved lookup speeds of the set and dict.

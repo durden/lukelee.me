@@ -4548,22 +4548,20 @@
 
 <h1 id="beware-of-subtle-python-list-semantics">Beware of subtle python list semantics<a class="headerlink" href="#beware-of-subtle-python-list-semantics" title="Permanent link">&para;</a></h1>
 <p>Here's a quiz:</p>
-<pre>
-x = [1]
-y = [2]
-print id(x)
-
-x += y
-print x, id(x)
-
-x = [1]
-y = [2]
-print id(x)
-
-x = x + y
-print id(x)
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">print</span> <span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">x</span> <span class="o">+=</span> <span class="n">y</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">print</span> <span class="n">x</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">print</span> <span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nb">print</span> <span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></code></pre></div>
 <p>Do += or + create a new object or update the existing one in place?  Seems a bit ambiguous and the answer was somewhat unexpected, at least for me.</p>
 <p>Keep in mind <a href="http://stackoverflow.com/a/2347272/1108031">+= is a shorthand for x.extend(y)</a>.</p>
 <p>I would be curious to know why the Python language was designed with this little 'trick.'  It seems like this blatantly violates the '<strong>There should be one-- and preferably only one --obvious way to do it.</strong>' mantra from <a href="http://www.python.org/dev/peps/pep-0020/">The Zen of Python</a>.</p>

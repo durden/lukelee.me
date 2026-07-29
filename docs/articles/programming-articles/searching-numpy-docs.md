@@ -13,9 +13,13 @@ I've been following tweets today from the [PyData 2012](http://nyc2012.pydata.or
 
 The [intro numpy](http://mentat.za.net/numpy/intro/intro.html) tutorial had one immediately useful [tip](http://mentat.za.net/numpy/intro/intro.html#finding-things-in-numpy):
 
-<pre>
+
+
+```python
 >>> import numpy
 >>> numpy.lookfor('division')
-</pre>
+```
+
+
 
 Just run that code and take it all in.

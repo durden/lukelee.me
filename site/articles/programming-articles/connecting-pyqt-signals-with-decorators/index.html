@@ -4721,13 +4721,11 @@
 <h1 id="connecting-pyqt-signals-with-decorators">Connecting PyQt signals with decorators<a class="headerlink" href="#connecting-pyqt-signals-with-decorators" title="Permanent link">&para;</a></h1>
 <p>I've been writing <a href="http://www.riverbankcomputing.com/software/pyqt/intro">PyQt</a> for several years now and just ran across a <a href="http://pysnippet.blogspot.com/2010/06/qsignalmapper-at-your-service.html">QSignalMapper code snippet</a> demonstrating the process of connecting a signal to a slot with a decorator.  I suppose this is not a common design within the PyQt community.  Is there a reason for this?</p>
 <p>Consider the following example of how <code>connect</code> can be used as a decorator:</p>
-<pre>
-    # Handle grid clicks here  
-    @win.clicked.connect  
-    def clicked(index):  
-        print "Button at:", index, " - text:", items[index].text()  
-</pre>
-
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Handle grid clicks here  </span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nd">@win</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span>  
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">clicked</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>  
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nb">print</span> <span class="s2">&quot;Button at:&quot;</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="s2">&quot; - text:&quot;</span><span class="p">,</span> <span class="n">items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+</span></code></pre></div>
 <p>It never occurred to me, but the <a href="http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html#connecting-disconnecting-and-emitting-signals">connect</a> method of a <a href="http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html#defining-new-signals-with-pyqtsignal">pyqtSignal object</a> is <strong>almost</strong> a decorator by definition [1]:</p>
 <blockquote>
 <p>A decorator is any callable Python

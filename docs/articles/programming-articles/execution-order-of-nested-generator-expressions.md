@@ -8,14 +8,18 @@ categories:
 # Execution order of nested generator expressions
 What does this print?
 
-<pre>
-    units = [1, 2]
-    tens = [10, 20]
-    nums = (a + b for a in units for b in tens)
-    units = [3, 4]
-    tens = [30, 40]
-    print nums.next()
-</pre>
+
+
+```python
+units = [1, 2]
+tens = [10, 20]
+nums = (a + b for a in units for b in tens)
+units = [3, 4]
+tens = [30, 40]
+print nums.next()
+```
+
+
 
 I was surprised by the result because of the subtle way [generator expressions are executed](http://docs.python.org/2/reference/expressions.html#generator-expressions).  The reasoning makes sense, which is to preserve your sanity when there's an error triggered by the generator.
 

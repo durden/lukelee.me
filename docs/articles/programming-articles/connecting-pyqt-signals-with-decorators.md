@@ -10,12 +10,16 @@ I've been writing [PyQt](http://www.riverbankcomputing.com/software/pyqt/intro) 
 
 Consider the following example of how `connect` can be used as a decorator:
 
-<pre>
-    # Handle grid clicks here  
-    @win.clicked.connect  
-    def clicked(index):  
-        print "Button at:", index, " - text:", items[index].text()  
-</pre>
+
+
+```python
+# Handle grid clicks here  
+@win.clicked.connect  
+def clicked(index):  
+    print "Button at:", index, " - text:", items[index].text()
+```
+
+
 
 It never occurred to me, but the [connect](http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html#connecting-disconnecting-and-emitting-signals) method of a [pyqtSignal object](http://pyqt.sourceforge.net/Docs/PyQt4/new_style_signals_slots.html#defining-new-signals-with-pyqtsignal) is **almost** a decorator by definition [1]:
 
