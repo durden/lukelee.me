@@ -16,7 +16,9 @@ icon: lucide/book-open
 
 # Welcome to the Tech & Software Engineering Blog
 
-This blog features 119 articles covering Python development, software engineering patterns, memory profiling, and conference talks.
+This blog features **119 articles** covering Python development, software engineering patterns, memory profiling, and conference talks.
+
+---
 
 ## Categories
 
@@ -54,10 +56,10 @@ for cat_slug, cat_title in categories_map.items():
     
     index_content += f"### {cat_title} ({len(articles)})\n\n"
     for date_str, title, rel_path in articles:
-        index_content += f"- **{date_str}** - [{title}]({rel_path})\n"
+        index_content += f"- <span class=\"blog-badge\">{date_str}</span> [{title}]({rel_path})\n"
     index_content += "\n"
 
 with open("/Users/durden/Documents/code/blog_2026/docs/index.md", "w", encoding="utf-8") as f:
     f.write(index_content)
 
-print("Updated docs/index.md successfully!")
+print("Updated docs/index.md with styled badges!")
