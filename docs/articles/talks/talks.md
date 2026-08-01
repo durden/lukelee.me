@@ -1,6 +1,6 @@
 ---
 title: "Conference Talks"
-date: 2014-04-17
+date: 2026-07-29
 categories:
   - Talks
 ---
@@ -11,6 +11,24 @@ I've had the opportunity to present talks at a few conferences and meetups
 on topics ranging from scientific GUI applications in
 [Python](http://python.org) to [Django](http://djangoproject.com).  Here is a
 listing with links to the slides used for each presentation.
+
+## DjangoCon October 2022
+**Lint All the Things!**
+
+- [Video](https://youtu.be/Ms8LW2k4nJw?si=GXer2POBrJI5MBba)
+- [Description](https://pyvideo.org/djangocon-us-2022/lint-all-the-things.html)
+
+## EuroPython July 2022
+**Lint All the Things!**
+
+- [Video](https://youtu.be/9psDYv4kVvE?si=iCYx3TZJj7vh1NEQ)
+- [Description](https://pyvideo.org/europython-2022/lint-all-the-things.html)
+
+## Python Web Conf March 2022
+**Lint All the Things!**
+
+- [Video](https://youtu.be/Oys3ycUyNiU?si=PgqqAhtt0uyu0tjh)
+- [Description](https://pyvideo.org/python-web-conf-2022/lint-all-the-things.html)
 
 ## Pycon DE (Germany) 2018
 
