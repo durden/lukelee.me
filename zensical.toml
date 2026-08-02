@@ -11,18 +11,18 @@
 # The site_name is shown in the page header and the browser window title
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_name
-site_name = "Tech & Software Engineering Blog"
+site_name = "Software Engineering - Music - Yoga"
 
 # The site_description is included in the HTML head and should contain a
 # meaningful description of the site content for use by search engines.
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_description
-site_description = "A collection of 119 articles on Python, software design, web development, and engineering talks."
+site_description = "A collection of writings"
 
 # The site_author attribute. This is used in the HTML head element.
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_author
-site_author = "durden"
+site_author = "Luke Lee"
 
 # The site_url is the canonical URL for your site. When building online
 # documentation you should set this.
@@ -34,7 +34,7 @@ site_author = "durden"
 #
 # Read more: https://zensical.org/docs/setup/basics/#copyright
 copyright = """
-Copyright &copy; 2026 durden
+Copyright &copy; 2026 Luke Lee
 """
 
 # Zensical supports both implicit navigation and explicitly defined navigation.
