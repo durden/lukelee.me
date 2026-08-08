@@ -23,9 +23,9 @@ You can find the playlists themselves by looking for playlists named `dd/mm/yy` 
 
 
 ### General Stats
-• Playlists Analyzed: 69
-• Total Tracks (with duplicates across playlists): 1,228
-• Unique Songs: 729
+- Playlists Analyzed: 69
+- Total Tracks (with duplicates across playlists): 1,228
+- Unique Songs: 729
 
 ### Top 5 Artists
 
