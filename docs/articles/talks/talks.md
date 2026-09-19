@@ -8,9 +8,9 @@ categories:
 # Talks
 
 I've had the opportunity to present talks at a few conferences and meetups
-on topics ranging from scientific GUI applications in
-[Python](http://python.org) to [Django](http://djangoproject.com).  Here is a
-listing with links to the slides used for each presentation.
+on topics ranging from desktop applications in [Python](http://python.org),
+[Django](http://djangoproject.com) and testing philosophy.  Here is a listing
+with links to the slides used for each presentation.
 
 ## DjangoCon October 2022
 **Lint All the Things!**
