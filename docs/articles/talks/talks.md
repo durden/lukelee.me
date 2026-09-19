@@ -73,7 +73,7 @@ with links to the slides used for each presentation.
 
 **Dunder What?**
 
-- [Slides](http://durden.github.com/dunder_talk/)
+- [Slides](http://durden.github.io/dunder_talk/)
 - [Video](https://www.youtube.com/watch?v=R7r-fKU8Quc)
 
 
@@ -81,14 +81,11 @@ with links to the slides used for each presentation.
 
 **Dunder What?**
 
-- [Slides](http://durden.github.com/dunder_talk/)
+- [Slides](http://durden.github.io/dunder_talk/)
 
-**Scientific applications in Python**
-
-- [Slides](http://durden.github.io/python_science_apps/?full#1)
 
 ## PyHou meetup
 
-- [Python in the oil and gas industry](http://durden.github.com/pyhou_oil/)
-- [Django Deployment](http://durden.github.com/django_deployment)
-- [Simple Django split testing](http://durden.github.com/split_testing_django/)
+- [Python in the oil and gas industry](http://durden.github.io/pyhou_oil/)
+- [Django Deployment](http://durden.github.io/django_deployment)
+- [Simple Django split testing](http://durden.github.io/split_testing_django/)
